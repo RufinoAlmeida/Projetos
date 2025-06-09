@@ -98,7 +98,7 @@ def jogar(escolha):
 
     # Empate
     if voce == pc:
-        app_linha['bg'] = co1
+        app_linha['bg'] = co6
         app_1_linha['bg'] = co0
         app_2_linha['bg'] = co0
     # Vitória do jogador

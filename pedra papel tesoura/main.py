@@ -98,7 +98,7 @@ def jogar(escolha):
 
     # Empate
     if voce == pc:
-        app_linha['bg'] = co5
+        app_linha['bg'] = co1
         app_1_linha['bg'] = co0
         app_2_linha['bg'] = co0
     # Vitória do jogador
@@ -194,18 +194,18 @@ def fim_do_jogo():
         cor_resultado = co7  # Vermelho para derrota
     else:
         titulo = "🤝 Empate!"
-        mensagem = f"O confronto terminou empatado!"
-        cor_resultado = co5  # Amarelo para empate
+        mensagem = f"Ninguém Venceu!"
+        cor_resultado = co1  # Preto para empate
     
     # Criar labels com o resultado na janela
     resultado_titulo = tk.Label(frame_baixo, text=titulo, font=('Ivy 20 bold'), bg=co0, fg=cor_resultado)
     resultado_titulo.place(x=90, y=50)
     
     resultado_mensagem = tk.Label(frame_baixo, text=mensagem, font=('Ivy 14 bold'), bg=co0, fg=co1)
-    resultado_mensagem.place(x=80, y=90)
+    resultado_mensagem.place(x=90, y=90)
     
     placar_final = tk.Label(frame_baixo, text=f"Placar final: {pontos_voce} x {pontos_pc}", font=('Ivy 16 bold'), bg=co0, fg=co1)
-    placar_final.place(x=100, y=120)
+    placar_final.place(x=90, y=120)
     
     # Alterar o texto do botão para "Jogar Novamente"
     botao_iniciar['text'] = "Jogar Novamente"

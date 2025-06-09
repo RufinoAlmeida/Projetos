@@ -62,25 +62,6 @@ pontos_voce = 0
 pontos_pc = 0
 rondas = 5
 jogo_iniciado = False
-botoes_jogo = []
-
-def mostrar_resultado_rodada(voce, pc, resultado):
-    # Criar label temporário para mostrar resultado da rodada
-    resultado_temp = tk.Label(frame_baixo, text=f"Você: {voce} | PC: {pc} | {resultado}", 
-                             font=('Ivy 12 bold'), bg=co0, fg=co1)
-    resultado_temp.place(x=60, y=180)
-    
-    # Remover após 2 segundos
-    janela.after(2000, resultado_temp.destroy)
-
-def mostrar_proxima_rodada():
-    # Mostrar mensagem "Próxima rodada em..."
-    proxima_msg = tk.Label(frame_baixo, text="Próxima rodada começando...", 
-                          font=('Ivy 14 bold'), bg=co0, fg=co4)
-    proxima_msg.place(x=90, y=210)
-    
-    # Remover mensagem e reabilitar botões
-    janela.after(1000, lambda: [proxima_msg.destroy(), habilitar_botoes()])
 
 def jogar(escolha):
     global pontos_voce, pontos_pc, rondas, jogo_iniciado
@@ -99,8 +80,8 @@ def jogar(escolha):
     # Empate
     if voce == pc:
         app_linha['bg'] = co5
-        app_1_linha['bg'] = co0
-        app_2_linha['bg'] = co0
+        app_1_linha['bg'] = co8
+        app_2_linha['bg'] = co8
     # Vitória do jogador
     elif (voce == 'Pedra' and pc == 'Tesoura') or \
          (voce == 'Papel' and pc == 'Pedra') or \
@@ -113,7 +94,7 @@ def jogar(escolha):
         pontos_pc += 1
         app_1_linha['bg'] = co0
         app_2_linha['bg'] = co8
-        app_linha['bg'] = co8
+        app_linha['bg'] = co7
 
     app_1_pontos['text'] = str(pontos_voce)
     app_2_pontos['text'] = str(pontos_pc)
@@ -165,10 +146,6 @@ def iniciar_jogo():
     b3 = tk.Button(frame_baixo, image=icon_3, command=lambda: jogar('Tesoura'), bg=co0, relief='flat')
     b3.place(x=265, y=70)
     
-    # Armazenar referências dos botões
-    global botoes_jogo
-    botoes_jogo = [b1, b2, b3]
-    
     # Restaurar o texto original do botão
     botao_iniciar['text'] = "Iniciar o Jogo"
     
@@ -198,13 +175,16 @@ def fim_do_jogo():
         cor_resultado = co5  # Amarelo para empate
     
     # Criar labels com o resultado na janela
-    resultado_titulo = tk.Label(frame_baixo, text=titulo, font=('Ivy 20 bold'), bg=co0, fg=cor_resultado)
+    resultado_titulo = tk.Label(frame_baixo, text=titulo, font=('Ivy 20 bold'), 
+                               bg=co0, fg=cor_resultado)
     resultado_titulo.place(x=90, y=50)
     
-    resultado_mensagem = tk.Label(frame_baixo, text=mensagem, font=('Ivy 14 bold'), bg=co0, fg=co1)
+    resultado_mensagem = tk.Label(frame_baixo, text=mensagem, font=('Ivy 14 bold'), 
+                                 bg=co0, fg=co1)
     resultado_mensagem.place(x=80, y=90)
     
-    placar_final = tk.Label(frame_baixo, text=f"Placar final: {pontos_voce} x {pontos_pc}", font=('Ivy 16 bold'), bg=co0, fg=co1)
+    placar_final = tk.Label(frame_baixo, text=f"Placar final: {pontos_voce} x {pontos_pc}", 
+                           font=('Ivy 16 bold'), bg=co0, fg=co1)
     placar_final.place(x=100, y=120)
     
     # Alterar o texto do botão para "Jogar Novamente"
@@ -213,7 +193,8 @@ def fim_do_jogo():
     print(f"Fim do jogo - Você: {pontos_voce}, PC: {pontos_pc}")  # Debug
 
 # Botão iniciar
-botao_iniciar = tk.Button(frame_baixo, text="Iniciar o Jogo", command=iniciar_jogo, bg=fundo, fg=co0, font=('Ivy 15 bold'), relief='raised', overrelief='ridge')
+botao_iniciar = tk.Button(frame_baixo, text="Iniciar o Jogo", command=iniciar_jogo,
+                         bg=fundo, fg=co0, font=('Ivy 15 bold'), relief='raised', overrelief='ridge')
 botao_iniciar.place(x=100, y=200)
 
 janela.mainloop()
